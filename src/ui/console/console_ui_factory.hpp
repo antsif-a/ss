@@ -5,6 +5,7 @@
 #include "console_flyable_enemy.hpp"
 #include "console_full_box.hpp"
 #include "console_game_map.hpp"
+#include "console_jumpable_enemy.hpp"
 #include "console_mario.hpp"
 #include "console_money.hpp"
 #include "console_moving_platform.hpp"
@@ -22,6 +23,7 @@ namespace biv {
 			ConsoleMario* mario = nullptr;
 			std::vector<ConsoleEnemy*> enemies;
 			std::vector<ConsoleFlyableEnemy*> flyable_enemies;
+			std::vector<ConsoleJumpableEnemy*> jumpable_enemies;
 			std::vector<ConsoleMoney*> moneys;
 
 		public:
@@ -37,6 +39,9 @@ namespace biv {
 			void create_flyable_enemy(
 				const Coord& top_left, const int width, const int height,
 				const int right_bound, const int amplitude
+			) override;
+			void create_jumpable_enemy(
+				const Coord& top_left, const int width, const int height
 			) override;
 			void create_full_box(
 				const Coord& top_left, const int width, const int height

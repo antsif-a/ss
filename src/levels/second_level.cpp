@@ -41,6 +41,9 @@ void SecondLevel::init_data() {
 	
 	ui_factory->create_ship({180, 25}, 15, 2);
 	ui_factory->create_full_box({186, 16}, 5, 3);
+	// Прыгающий враг стоит на пути к последней платформе:
+	// его можно сбить сверху или пробежать под ним, пока он в воздухе.
+	ui_factory->create_jumpable_enemy({191, 5}, 3, 2);
 	
 	// Третья переправа: на платформу нужно запрыгнуть.
 	ui_factory->create_moving_platform({198, 22}, 8, 2, 225);

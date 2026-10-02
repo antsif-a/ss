@@ -1,5 +1,7 @@
 #include "enemy.hpp"
 
+#include <cmath>
+
 #include "map_movable.hpp"
 
 using biv::Enemy;
@@ -27,7 +29,13 @@ void Enemy::process_horizontal_static_collision(Rect* obj) noexcept {
 }
 
 void Enemy::process_mario_collision(Collisionable* mario) noexcept {
-	if (mario->get_speed().v > 0 && mario->get_speed().v != V_ACCELERATION) {
+	// Враг погибает, только если Марио падает на него сверху:
+	// в предыдущем кадре ноги Марио были не ниже верха врага.
+	// Если Марио задел врага сбоку (даже в прыжке), погибает Марио.
+	const float v = mario->get_speed().v;
+	const Rect mario_rect = mario->get_rect();
+	const float prev_bottom = mario_rect.get_y() + mario_rect.get_height() - v;
+	if (v > 0 && std::round(prev_bottom) <= get_top()) {
 		kill();
 	} else {
 		mario->kill();
