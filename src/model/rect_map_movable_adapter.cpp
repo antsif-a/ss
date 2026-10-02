@@ -9,10 +9,16 @@ RectMapMovableAdapter::RectMapMovableAdapter(
 	this->height = height;
 }
 
+int RectMapMovableAdapter::get_map_offset() const noexcept {
+	return map_offset;
+}
+
 void RectMapMovableAdapter::move_map_left() noexcept {
 	top_left.x -= MapMovable::MAP_STEP;
+	map_offset--;
 }
 
 void RectMapMovableAdapter::move_map_right() noexcept {
 	top_left.x += MapMovable::MAP_STEP;
+	map_offset++;
 }

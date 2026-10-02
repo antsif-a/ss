@@ -11,8 +11,10 @@ void ConsoleUIFactory::clear_data() {
 	mario = nullptr;
 	boxes.clear();
 	full_boxes.clear();
+	moving_platforms.clear();
 	ships.clear();
 	enemies.clear();
+	flyable_enemies.clear();
 	moneys.clear();
 }
 
@@ -31,6 +33,20 @@ void ConsoleUIFactory::create_enemy(
 ) {
 	ConsoleEnemy* enemy = new ConsoleEnemy(top_left, width, height);
 	enemies.push_back(enemy);
+	game->add_map_movable(enemy);
+	game->add_movable(enemy);
+	game->add_collisionable(enemy);
+	game_map->add_obj(enemy);
+}
+
+void ConsoleUIFactory::create_flyable_enemy(
+	const Coord& top_left, 
+	const int width, const int height,
+	const int right_bound, const int amplitude
+) {
+	ConsoleFlyableEnemy* enemy = 
+		new ConsoleFlyableEnemy(top_left, width, height, right_bound, amplitude);
+	flyable_enemies.push_back(enemy);
 	game->add_map_movable(enemy);
 	game->add_movable(enemy);
 	game->add_collisionable(enemy);
@@ -74,6 +90,20 @@ void ConsoleUIFactory::create_money(
 	game->add_movable(money);
 	game->add_collisionable(money);
 	game_map->add_obj(money);
+}
+
+void ConsoleUIFactory::create_moving_platform(
+	const Coord& top_left, 
+	const int width, const int height,
+	const int right_bound
+) {
+	ConsoleMovingPlatform* platform = 
+		new ConsoleMovingPlatform(top_left, width, height, right_bound, mario);
+	moving_platforms.push_back(platform);
+	game->add_map_movable(platform);
+	game->add_movable(platform);
+	game->add_static_obj(platform);
+	game_map->add_obj(platform);
 }
 
 void ConsoleUIFactory::create_ship(

@@ -23,12 +23,18 @@ namespace biv {
 				const Coord& top_left, const int width, const int height) = 0;
 			virtual void create_enemy(
 				const Coord& top_left, const int width, const int height) = 0;
+			virtual void create_flyable_enemy(
+				const Coord& top_left, const int width, const int height,
+				const int right_bound, const int amplitude) = 0;
 			virtual void create_full_box(
 				const Coord& top_left, const int width, const int height) = 0;
 			virtual void create_mario(
 				const Coord& top_left, const int width, const int height) = 0;
 			virtual void create_money(
 				const Coord& top_left, const int width, const int height) = 0;
+			virtual void create_moving_platform(
+				const Coord& top_left, const int width, const int height,
+				const int right_bound) = 0;
 			virtual void create_ship(
 				const Coord& top_left, const int width, const int height) = 0;
 			virtual GameMap* get_game_map(const int height, const int width) = 0;

@@ -24,6 +24,11 @@ void SecondLevel::init_data() {
 	ui_factory->create_ship({60, 20}, 10, 7);
 	ui_factory->create_ship({80, 25}, 20, 2);
 	ui_factory->create_ship({120, 20}, 10, 7);
+	
+	ui_factory->create_moving_platform({102, 22}, 8, 2, 110);
+	
 	ui_factory->create_ship({150, 25}, 40, 2);
 	ui_factory->create_ship({210, 20}, 10, 7);
+	
+	ui_factory->create_flyable_enemy({10, 0}, 3, 2, 98, 2);
 }
