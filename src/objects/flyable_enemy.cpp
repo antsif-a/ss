@@ -15,7 +15,6 @@ FlyableEnemy::FlyableEnemy(
 	amplitude(amplitude) {}
 
 void FlyableEnemy::move_horizontally() noexcept {
-	// Сбитый враг больше не летает, а падает вниз.
 	if (!is_active()) {
 		return;
 	}
