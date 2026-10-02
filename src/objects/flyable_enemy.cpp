@@ -15,6 +15,11 @@ FlyableEnemy::FlyableEnemy(
 	amplitude(amplitude) {}
 
 void FlyableEnemy::move_horizontally() noexcept {
+	// Сбитый враг больше не летает, а падает вниз.
+	if (!is_active()) {
+		return;
+	}
+	
 	const float pos = top_left.x - get_map_offset();
 	float next = pos + hspeed;
 	if (next >= right_bound) {
@@ -28,6 +33,11 @@ void FlyableEnemy::move_horizontally() noexcept {
 }
 
 void FlyableEnemy::move_vertically() noexcept {
+	if (!is_active()) {
+		Movable::move_vertically();
+		return;
+	}
+	
 	phase += 0.1f;
 	top_left.y = origin_y + amplitude * std::sin(phase);
 }
